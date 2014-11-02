@@ -1,83 +1,95 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <title>Sqlite4unity3d by codecoding</title>
 
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <title>Sqlite4unity3d by codecoding</title>
   </head>
-
   <body>
-    <header>
-      <div class="inner">
+    <div class="wrapper">
+      <header>
         <h1>Sqlite4unity3d</h1>
-        <h2></h2>
-        <a href="https://github.com/codecoding/SQLite4Unity3d" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
+        <p>Use SQLite easily in your Unity3d projects.</p>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <p class="view"><a href="https://github.com/codecoding/SQLite4Unity3d">View the Project on GitHub <small>codecoding/SQLite4Unity3d</small></a></p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+        <ul>
+          <li><a href="https://github.com/codecoding/SQLite4Unity3d/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/codecoding/SQLite4Unity3d/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/codecoding/SQLite4Unity3d">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="whats-this" class="anchor" href="#whats-this"><span class="octicon octicon-link"></span></a>What's this?</h1>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>When I started with Unity3d development I needed to use SQLite in my project and it was very hard to me to find a place with simple instructions on how to make it work. All I got were links to paid solutions on the Unity3d's Assets Store and a lot of different and complicated tutorials.</p>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<p>At the end, I decided that there should be a simpler way and I created <strong>SQLite4Unity3d</strong>, a library that helps you to use SQLite in your Unity3d projects in a clear and easy way and works in <strong>iOS, Android and Windows Phone</strong> projects.</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>Besides that, it uses the great <a href="https://github.com/praeclarum/sqlite-net">sqlite-net</a> library as a base so you will have <strong>Linq besides sql</strong>. For a further reference on what possibilities you have available with this library I encourage you to visit <a href="https://github.com/praeclarum/sqlite-net">its github repository</a>. </p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+<p>*Note: <em>SQLite4Unity3d uses only the synchronous part of sqlite-net, so all the calls to the database are synchronous.</em></p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>If you want to know more about why I created this plugin you can read more <a href="http://www.codecoding.com/sqlite4unity3d-using-sqlite-net-library-and-unity3d-free-edition/">here</a>.</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<h1>
+<a name="the-fast-track" class="anchor" href="#the-fast-track"><span class="octicon octicon-link"></span></a>The fast track</h1>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>All you have to do to start using it in your project:</p>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<ol>
+<li>
+<a href="https://github.com/codecoding/SQLite4Unity3d/raw/master/Plugins.zip">Download this zip</a> and <strong>copy the resulting folder to your Assets/Plugins folder</strong>. It contains the dlls that Unity3d will need to access sqlite.</li>
+<li>Don’t forget to <strong>copy your SQLite database file in your Assets/StreamingAssets folder if you’re shipping one</strong>.</li>
+<li>
+<strong>You’re done!</strong> Now you can get access to your database using sqlite-net.  ;P</li>
+</ol>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-        </section>
+<h1>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h1>
 
-        <aside id="sidebar">
-          <a href="https://github.com/codecoding/SQLite4Unity3d/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/codecoding/SQLite4Unity3d/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+<p>If you want to try it I've uploaded a small example that you will be able to find in the "Example" folder. Download the folder and open it with Unity3d to give it a try.</p>
 
-          <p class="repo-owner"><a href="https://github.com/codecoding/SQLite4Unity3d"></a> is maintained by <a href="https://github.com/codecoding">codecoding</a>.</p>
+<h1>
+<a name="ios-particularities" class="anchor" href="#ios-particularities"><span class="octicon octicon-link"></span></a>iOS particularities</h1>
 
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
+<p>As you may know <strong>iOS doesn't allow JIT compilation</strong> so, generally speaking, you will have to be very careful when you use <strong>reflection</strong> in your code. For a more deeper explanation of this issue please refer to Google but making it short: you cannot create dynamic objects using reflection. How is this affecting SQLite4Unity3d? Well, <strong>you can't use the linq syntax</strong> when making queries to SQLite and <strong>you will have to use the old sql syntax</strong>.</p>
+
+<h1>
+<a name="acknowledgements" class="anchor" href="#acknowledgements"><span class="octicon octicon-link"></span></a>Acknowledgements</h1>
+
+<p>This project is based on the work of:</p>
+
+<ul>
+<li><p><a href="https://github.com/MvvmCross/MvvmCross">@MvvmCross</a> - License: developed and distributed under Ms-Pl - see <a href="http://opensource.org/licenses/ms-pl.html">http://opensource.org/licenses/ms-pl.html</a></p></li>
+<li><p><a href="https://github.com/praeclarum/sqlite-net">Sqlite-net</a> - License: custom - see <a href="https://github.com/praeclarum/sqlite-net/blob/master/license.md">https://github.com/praeclarum/sqlite-net/blob/master/license.md</a></p></li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/codecoding">codecoding</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
     </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-150223-24");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
 
-  
   </body>
 </html>
