@@ -201,20 +201,78 @@ namespace SQLite4Unity3d
 
             StoreDateTimeAsTicks = storeDateTimeAsTicks;
 
-            BusyTimeout = TimeSpan.FromSeconds(0.1);
+			BusyTimeout = TimeSpan.FromSeconds(0.1);
         }
 
-        static SQLiteConnection()
-        {
-            if (_preserveDuringLinkMagic)
-            {
-                var ti = new TableInfo();
-                ti.name = "magic";
-            }
-        }
+#if SQLCIPHER
+		public SQLiteConnection(string databasePath, string key, bool storeDateTimeAsTicks = false)
+		{
+			DatabasePath = databasePath;
+			Sqlite3DatabaseHandle handle;
+			var r = SQLite3.Open(DatabasePath, out handle);
+			Handle = handle;
+			if (r != SQLite3.Result.OK)
+			{
+				throw SQLiteException.New(r, String.Format("Could not open database file: {0} ({1})", DatabasePath, r));
+			}
+			if (key != null) {
+				SQLite3.Key(Handle, key);
+			}
+			_open = true;
+			
+			StoreDateTimeAsTicks = storeDateTimeAsTicks;
+			
+			BusyTimeout = TimeSpan.FromSeconds(0.1);
+		}
 
-        /// <summary>
-        /// Used to list some code that we want the MonoTouch linker
+		public SQLiteConnection(string databasePath, SQLiteOpenFlags openFlags, string key, bool storeDateTimeAsTicks = false)
+		{
+			DatabasePath = databasePath;
+			Sqlite3DatabaseHandle handle;
+			
+#if SILVERLIGHT
+			var r = SQLite3.Open (databasePath, out handle, (int)openFlags, IntPtr.Zero);
+#else
+			// open using the byte[]
+			// in the case where the path may include Unicode
+			// force open to using UTF-8 using sqlite3_open_v2
+			byte[] databasePathAsBytes;
+			int databasePathLength;
+			
+			databasePathLength = System.Text.Encoding.UTF8.GetByteCount(DatabasePath);
+			databasePathAsBytes = new byte[databasePathLength + 1];
+			databasePathLength = System.Text.Encoding.UTF8.GetBytes(DatabasePath, 0, DatabasePath.Length,
+			                                                        databasePathAsBytes, 0);
+			
+			var r = SQLite3.Open(databasePathAsBytes, out handle, (int)openFlags, IntPtr.Zero);
+#endif
+			
+			Handle = handle;
+			if (r != SQLite3.Result.OK)
+			{
+				throw SQLiteException.New(r, String.Format("Could not open database file: {0} ({1})", DatabasePath, r));
+			}
+			if (key != null) {
+				SQLite3.Key(Handle, key);
+			}
+			_open = true;
+			
+			StoreDateTimeAsTicks = storeDateTimeAsTicks;
+			
+			BusyTimeout = TimeSpan.FromSeconds(0.1);
+		}
+#endif
+		static SQLiteConnection()
+		{
+			if (_preserveDuringLinkMagic)
+			{
+				var ti = new TableInfo();
+				ti.name = "magic";
+			}
+		}
+		
+		/// <summary>
+		/// Used to list some code that we want the MonoTouch linker
         /// to see, but that we never want to actually execute.
         /// </summary>
         private static bool _preserveDuringLinkMagic = false;
@@ -2692,6 +2750,14 @@ namespace SQLite4Unity3d
         [DllImport("sqlite3", EntryPoint = "sqlite3_open_v2", CallingConvention = CallingConvention.Cdecl)]
         public static extern Result Open(byte[] filename, out IntPtr db, int flags, IntPtr zvfs);
 
+#if SQLCIPHER
+		[DllImport("sqlite3", EntryPoint = "sqlite3_key", CallingConvention = CallingConvention.Cdecl)]
+		public static extern Result Key(IntPtr db, [MarshalAs(UnmanagedType.LPStr)] string key, int nkey);
+		public static Result Key(IntPtr db, string pwd)
+		{
+			return Key(db, pwd, pwd.Length);
+		}
+#endif
         [DllImport("sqlite3", EntryPoint = "sqlite3_open16", CallingConvention = CallingConvention.Cdecl)]
         public static extern Result Open16([MarshalAs(UnmanagedType.LPWStr)] string filename, out IntPtr db);
 
